@@ -1,3 +1,3 @@
-const chalk = require('chalk').default;
+const chalk = require("chalk").default;
 
-console.log(chalk.red('Hello, World!'));
+console.log(chalk.red("Hello, World!"));
