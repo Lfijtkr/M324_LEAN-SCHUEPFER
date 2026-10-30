@@ -7,7 +7,7 @@
     "format": "prettier --write \"**/*.{js,mjs,md}\" package.json .prettierrc",
     "format:check": "prettier --check \"**/*.{js,mjs,md}\" package.json .prettierrc",
     "lint": "eslint .",
-    "start": "npm run lint && npm run format:check && node index.js",
+    "start": "npm run lint && npm run format:check && node convert.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,7 +19,8 @@
     "npm": ">=11.6.0"
   },
   "dependencies": {
-    "chalk": "^6.0.1"
+    "chalk": "^6.0.1",
+    "marked": "^18.1.2"
   },
   "devDependencies": {
     "eslint": "^10.13.0",
