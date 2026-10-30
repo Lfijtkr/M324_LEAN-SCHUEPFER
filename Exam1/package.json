@@ -16,7 +16,7 @@
   "type": "module",
   "engines": {
     "node": ">=22.18.0",
-    "npm": ">=11.6.0"
+    "npm": ">=11.10.0"
   },
   "dependencies": {
     "chalk": "^6.0.1",
