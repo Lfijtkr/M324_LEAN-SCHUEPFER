@@ -77,8 +77,10 @@ The [ESLint demonstration][lint-failure] failed as expected: GitHub's
 annotation identified the unused `unusedForCi` variable. The variable was
 removed. In the [Prettier demonstration][format-failure], lint passed and
 Prettier rejected the indentation in `Exercise 2/Index.js` with exit code 1.
-The indentation was restored. The Mocha demonstration, final passing run,
-and merge are still pending. Full step logs require a signed-in GitHub session.
+The indentation was restored. The [Mocha demonstration][test-failure] failed
+at the test step after lint and formatting passed. The assertion expected
+`4` instead of `3`; the expected value was restored. The final passing run
+and merge are pending. Full step logs require a signed-in GitHub session.
 
 ## Task 2: Pull Request Comment
 
@@ -138,9 +140,9 @@ gate that requires `finish` to be true and `found` to be false. The detailed
 signature update and scanned-file statistics still need signed-in review.
 To test detection without real malware, use the [EICAR test file][eicar] in a
 disposable runner workspace and confirm that ClamAV flags it. Do not commit
-the test file or disable endpoint protection to download it. After checking
-the scan, add `if: ${{ false }}` at job level and verify that another run
-shows the job as **Skipped**. The skip verification is pending.
+the test file or disable endpoint protection to download it. After the
+successful scan, I added `if: ${{ false }}` at job level. GitHub verification
+that the job shows **Skipped** is pending the next push.
 
 [repo]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER
 [checkout]: https://github.com/actions/checkout/tree/3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -156,4 +158,5 @@ shows the job as **Skipped**. The skip verification is pending.
 [baseline-ci]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236594
 [lint-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727664681
 [format-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44728451321
+[test-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44728805292
 [baseline-scan]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236567
