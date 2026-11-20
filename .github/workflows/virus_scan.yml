@@ -1,0 +1,44 @@
+name: Scan Repository for Malware
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Scan checked-out files with ClamAV
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Fetch files to scan
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Update signatures and scan
+        id: antivirus
+        uses: hugoalh/scan-virus-ghaction@99c81e8991ad1074a14e5f22a21bce9be035e14e # v0.20.1
+        with:
+          clamav_update: 'true'
+          git_integrate: 'false'
+          statistics_summary: 'true'
+
+      - name: Require a completed scan with no detections
+        env:
+          SCAN_FINISHED: ${{ steps.antivirus.outputs.finish }}
+          THREAT_FOUND: ${{ steps.antivirus.outputs.found }}
+        run: |
+          if [[ "${SCAN_FINISHED,,}" != true ]]; then
+            echo 'The scanner did not report a completed scan.' >&2
+            exit 1
+          fi
+          if [[ "${THREAT_FOUND,,}" != false ]]; then
+            echo 'The scan found a threat or did not report a detection status.' >&2
+            exit 1
+          fi

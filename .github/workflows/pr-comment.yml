@@ -1,0 +1,23 @@
+name: Welcome New Pull Requests
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened]
+
+permissions: {}
+
+jobs:
+  welcome:
+    name: Post the exercise checklist
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Post a welcome comment
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          message: |
+            Thanks for opening this pull request. Please review the lint, formatting,
+            and test results in the Checks tab before merging.
+          comment-tag: exercise-ci-welcome

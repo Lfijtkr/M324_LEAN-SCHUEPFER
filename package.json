@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ttest": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "format": "prettier --write \"Exercise 2\"",
+    "lint": "eslint \"Exercise 2\"",
+    "format:check": "prettier --check \"Exercise 2\"",
     "test": "mocha \"Exercise 2/**/*.test.js\""
-
   },
   "repository": {
     "type": "git",

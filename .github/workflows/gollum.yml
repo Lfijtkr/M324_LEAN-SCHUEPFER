@@ -1,0 +1,21 @@
+name: Wiki Change Summary
+
+on: gollum
+
+permissions: {}
+
+jobs:
+  wiki_summary:
+    name: Summarize changed wiki pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Count created and edited wiki pages
+        shell: bash
+        run: |
+          jq -r '
+            .pages as $pages |
+            "### Wiki changes",
+            "",
+            "- Pages created: \([$pages[] | select(.action == "created")] | length)",
+            "- Pages edited: \([$pages[] | select(.action == "edited")] | length)"
+          ' "$GITHUB_EVENT_PATH" | tee -a "$GITHUB_STEP_SUMMARY"
