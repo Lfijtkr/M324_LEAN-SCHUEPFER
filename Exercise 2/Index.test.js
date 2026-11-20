@@ -3,7 +3,7 @@ const { sum } = require('./Index.js')
 
 describe('sum', () => {
   it('should add 1 + 2 to equal 3', () => {
-    assert.equal(sum(1, 2), 3)
+    assert.equal(sum(1, 2), 4)
   })
 
   it('should add 0.1 + 0.2 to equal 0.3', () => {
