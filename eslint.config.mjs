@@ -14,4 +14,12 @@ export default defineConfig([
     languageOptions: { sourceType: "script" },
     rules: { eqeqeq: "error", "no-console": "error" },
   },
+  {
+    files: ["Exercise 2/**/*.js"],
+    languageOptions: { sourceType: "commonjs", globals: globals.node },
+  },
+  {
+    files: ["Exercise 2/**/*.test.js"],
+    languageOptions: { globals: globals.mocha },
+  },
 ]);
