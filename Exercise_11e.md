@@ -4,8 +4,9 @@
 
 This exercise reuses the existing repository. Exercise 2 is in `Exercise 2/`
 (with a space), while its npm manifest and lockfile are at the repository root.
-The remote is the [existing GitHub repository][repo]. Private visibility and
-the teacher's accepted access are pending confirmation in GitHub Settings.
+The remote is the [existing GitHub repository][repo]. The teacher approved
+keeping this repository public, so the submission can be read without an
+invitation. An Owner role is not confirmed.
 
 A personal GitHub repository has one owner. It can invite the teacher as a
 collaborator, but cannot add a second owner. If the assignment requires an
@@ -71,12 +72,11 @@ A clean local install passed lint, formatting, and both tests on Node
 the quality checks do not constitute a dependency audit. `actionlint`
 passed for all five workflows.
 
-GitHub evidence is pending the first push of `ci_cd`. In the PR's **Checks**
-tab and the corresponding **Actions** run, inspect each step. Push and
-restore one example at a time: an unused variable for ESLint, a formatting
-only change for Prettier, and an incorrect expected sum for Mocha. Each
-failure should appear at its matching step. Record the run links, verify
-the final passing run, and then merge the PR into `main`.
+[PR #1][setup-pr] targets `main`. The [baseline run][baseline-ci] passed.
+The [ESLint demonstration][lint-failure] failed as expected: GitHub's
+annotation identified the unused `unusedForCi` variable. The variable was
+removed. The Prettier and Mocha demonstrations, final passing run, and merge
+are still pending. Full step logs require a signed-in GitHub session.
 
 ## Task 2: Pull Request Comment
 
@@ -131,13 +131,14 @@ Novel or obfuscated threats, encrypted archives, scanner limits, and files
 not present in the checkout can leave gaps. It does not replace code review,
 dependency auditing, or runtime monitoring.
 
-The scanner is initially enabled. In its first PR run, check the signature
-update, scanned-file statistics, and the `finish` and `found` outputs. To
-test detection without real malware, use the [EICAR test file][eicar] in a
+The [baseline scan job][baseline-scan] completed successfully, including the
+gate that requires `finish` to be true and `found` to be false. The detailed
+signature update and scanned-file statistics still need signed-in review.
+To test detection without real malware, use the [EICAR test file][eicar] in a
 disposable runner workspace and confirm that ClamAV flags it. Do not commit
 the test file or disable endpoint protection to download it. After checking
 the scan, add `if: ${{ false }}` at job level and verify that another run
-shows the job as **Skipped**. Both GitHub results are pending.
+shows the job as **Skipped**. The skip verification is pending.
 
 [repo]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER
 [checkout]: https://github.com/actions/checkout/tree/3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -149,3 +150,7 @@ shows the job as **Skipped**. Both GitHub results are pending.
 [npm-ci]: https://docs.npmjs.com/cli/commands/npm-ci
 [marketplace]: https://github.com/marketplace/actions/markdownlint-cli2-action
 [eicar]: https://www.eicar.org/download-anti-malware-testfile/
+[setup-pr]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/pull/1
+[baseline-ci]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236594
+[lint-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727664681
+[baseline-scan]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236567
