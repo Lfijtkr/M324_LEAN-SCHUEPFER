@@ -91,8 +91,9 @@ is from a fork and repository policy permits the event. The job grants only
 `pull-requests: write` to the built-in token. It sends a fixed `message`
 without checking out or executing any PR code.
 
-PR link and comment verification are pending. Once this workflow is on
-`main`, open a fresh test PR and confirm the bot comment and run log.
+Opening [PR #2][comment-pr] after the workflow landed on `main` triggered
+the [welcome run][comment-run]. Its [bot comment][bot-comment] appeared in
+the PR conversation with the expected checklist message.
 
 ## Task 3: Gollum
 
@@ -103,10 +104,9 @@ array from `GITHUB_EVENT_PATH` with `jq`. It prints counts rather than
 interpolating page titles into a shell script and needs no token permissions.
 
 A second constraint is that the workflow must be on the default branch and
-the wiki must be enabled and available for this private repository's plan.
-Live verification is pending: enable the wiki if supported, then create and
-edit a page and check the two run summaries. Do not make the repository
-public to enable the wiki.
+the repository wiki must be enabled. A wiki change triggered the
+[Gollum run][wiki-run], and the summary job passed. The run page confirms the
+event and job result; individual page counts were not checked.
 
 ## Task 4: GitHub Actions Marketplace
 
@@ -116,10 +116,10 @@ runbooks and onboarding docs consistent. The pinned source wraps the CLI and
 reports rule violations in the run log. This workflow checks this report only.
 
 The `ci.yml` schedule starts at **06:17 UTC every Monday** and calls the
-Markdown workflow. GitHub may delay a scheduled run. After the workflows
-are on `main`, use **Actions > Review Exercise Markdown > Run workflow** to
-test via `workflow_dispatch`. Confirm that the Markdown check ran and add
-the specific workflow run link here. Live evidence is pending.
+Markdown workflow. GitHub may delay a scheduled run. I tested it using
+**Actions > Review Exercise Markdown > Run workflow** on `main`. The
+[manual run][markdown-run] shows `workflow_dispatch` and a successful
+**Lint the exercise report** job.
 
 ## Task 5: Malware Scan
 
@@ -163,3 +163,8 @@ confirmed that the [next scan job][skipped-scan] was **Skipped**.
 [final-ci]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44729188285
 [baseline-scan]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236567
 [skipped-scan]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44729188343
+[comment-pr]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/pull/2
+[comment-run]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44729685842
+[bot-comment]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/pull/2#issuecomment-7038647022
+[wiki-run]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44730038974
+[markdown-run]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44730161071
