@@ -75,8 +75,10 @@ passed for all five workflows.
 [PR #1][setup-pr] targets `main`. The [baseline run][baseline-ci] passed.
 The [ESLint demonstration][lint-failure] failed as expected: GitHub's
 annotation identified the unused `unusedForCi` variable. The variable was
-removed. The Prettier and Mocha demonstrations, final passing run, and merge
-are still pending. Full step logs require a signed-in GitHub session.
+removed. In the [Prettier demonstration][format-failure], lint passed and
+Prettier rejected the indentation in `Exercise 2/Index.js` with exit code 1.
+The indentation was restored. The Mocha demonstration, final passing run,
+and merge are still pending. Full step logs require a signed-in GitHub session.
 
 ## Task 2: Pull Request Comment
 
@@ -153,4 +155,5 @@ shows the job as **Skipped**. The skip verification is pending.
 [setup-pr]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/pull/1
 [baseline-ci]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236594
 [lint-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727664681
+[format-failure]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44728451321
 [baseline-scan]: https://github.com/Lfijtkr/M324_LEAN-SCHUEPFER/actions/runs/44727236567
